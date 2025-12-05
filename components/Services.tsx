@@ -1,7 +1,7 @@
 import React from 'react';
-import { IMAGES } from '../constants';
-import { Product } from '../types';
-import FadeIn from './FadeIn';
+import { IMAGES } from '../constants.ts';
+import { Product } from '../types.ts';
+import FadeIn from './FadeIn.tsx';
 
 const products: Product[] = [
   {

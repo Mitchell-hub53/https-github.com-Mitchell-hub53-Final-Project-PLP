@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IMAGES } from '../constants';
+import { IMAGES } from '../constants.ts';
 
 const Hero: React.FC = () => {
   const [loaded, setLoaded] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import FadeIn from './FadeIn';
+import FadeIn from './FadeIn.tsx';
 
 const About: React.FC = () => {
   return (

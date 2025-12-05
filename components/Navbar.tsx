@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Leaf } from 'lucide-react';
-import { NAV_LINKS } from '../constants';
+import { NAV_LINKS } from '../constants.ts';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

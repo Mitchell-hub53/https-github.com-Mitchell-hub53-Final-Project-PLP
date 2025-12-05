@@ -1,8 +1,8 @@
 import React from 'react';
 import { Mail, Phone, Send, MapPin } from 'lucide-react';
-import FadeIn from './FadeIn';
-import { CONTACT_INFO } from '../constants';
-import { FORMSUBMIT_ENDPOINT } from '../services/api';
+import FadeIn from './FadeIn.tsx';
+import { CONTACT_INFO } from '../constants.ts';
+import { FORMSUBMIT_ENDPOINT } from '../services/api.ts';
 
 const Contact: React.FC = () => {
   return (

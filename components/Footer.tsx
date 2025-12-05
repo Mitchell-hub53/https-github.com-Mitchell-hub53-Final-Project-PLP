@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO } from '../constants.ts';
 
 const Footer: React.FC = () => {
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
+import Navbar from './components/Navbar.tsx';
+import Hero from './components/Hero.tsx';
+import About from './components/About.tsx';
+import Services from './components/Services.tsx';
+import Contact from './components/Contact.tsx';
+import Footer from './components/Footer.tsx';
+import ScrollToTop from './components/ScrollToTop.tsx';
 
 const App: React.FC = () => {
   return (
