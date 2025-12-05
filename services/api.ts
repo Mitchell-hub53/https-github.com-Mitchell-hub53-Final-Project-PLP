@@ -1,21 +1,21 @@
 import { ContactFormData, ApiResponse } from '../types';
-import { CONTACT_INFO } from '../constants';
 
 /**
  * Sends contact form data to the backend.
  * 
  * STATUS: CONNECTED TO LIVE BACKEND (FormSubmit.co)
  * 
- * This service uses FormSubmit.co to forward form submissions directly to the 
- * email address defined in CONTACT_INFO (agrigrowenterprise@gmail.com).
- * 
- * NOTE: The first time you submit a form from a new domain (or localhost),
- * you must check your email inbox to 'Activate' the form endpoint.
+ * This service uses FormSubmit.co to forward form submissions.
+ * We are using a secure Token (from your email) instead of the raw email address.
+ * This prevents spam and usually bypasses the need for manual activation links.
  */
 export const submitContactForm = async (data: ContactFormData): Promise<ApiResponse> => {
   console.log("Sending data to backend...", data);
 
-  const endpoint = `https://formsubmit.co/ajax/${CONTACT_INFO.email}`;
+  // SECURE TOKEN from your activation email (510a4101e526ebf35a84b7448d02f737)
+  // This maps to: agrigrowenterprise@gmail.com
+  const FORMSUBMIT_TOKEN = "510a4101e526ebf35a84b7448d02f737";
+  const endpoint = `https://formsubmit.co/ajax/${FORMSUBMIT_TOKEN}`;
 
   try {
     const response = await fetch(endpoint, {
@@ -30,7 +30,7 @@ export const submitContactForm = async (data: ContactFormData): Promise<ApiRespo
         message: data.message,
         _subject: `New Order/Inquiry from ${data.name} - Agrigrow Website`, // Custom email subject
         _template: 'table', // Formats the email nicely
-        _captcha: 'false'   // Optional: removes captcha for smoother UX (enable if spam occurs)
+        _captcha: 'false'   // Optional: removes captcha for smoother UX
       }),
     });
 
