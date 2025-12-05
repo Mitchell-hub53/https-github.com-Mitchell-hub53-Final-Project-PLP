@@ -333,7 +333,6 @@ const Contact: React.FC = () => {
               action={FORMSUBMIT_ENDPOINT} 
               method="POST" 
               target="_blank"
-              referrerPolicy="origin"
               className="bg-white p-8 rounded-xl shadow-lg"
             >
               <h3 className="text-2xl font-bold text-primary mb-6">Send a Message</h3>

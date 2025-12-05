@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agrigrow - Seedling Delivery</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -21,44 +22,243 @@
         }
       }
     </script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Hide content until React loads to prevent flash of unstyled content */
-        body:not(.loaded) #root {
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        body.loaded #root {
-            opacity: 1;
-        }
-    </style>
-    <!-- Load Babel for in-browser JSX transformation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Import Map for React -->
-    <script type="importmap">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "lucide-react": "https://esm.sh/lucide-react@0.263.1",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react/": "https://aistudiocdn.com/react@^19.2.1/"
   }
 }
 </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <div id="root"></div>
-    
-    <!-- Main Script with type="text/babel" so Babel compiles it -->
-    <script type="text/babel" data-type="module" src="./index.tsx"></script>
-    
-    <script>
-        // Simple helper to show body when React mounts
-        window.addEventListener('load', () => document.body.classList.add('loaded'));
-    </script>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-primary text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2 font-bold text-2xl">
+                <i data-lucide="leaf" class="h-8 w-8 text-secondary"></i>
+                <span>Agrigrow</span>
+            </div>
+
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#home" class="hover:text-secondary transition-colors duration-300 font-semibold">Home</a></li>
+                    <li><a href="#about" class="hover:text-secondary transition-colors duration-300 font-semibold">About</a></li>
+                    <li><a href="#services" class="hover:text-secondary transition-colors duration-300 font-semibold">Services</a></li>
+                    <li><a href="#contact" class="hover:text-secondary transition-colors duration-300 font-semibold">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="md:hidden">
+                <button id="menuBtn" class="focus:outline-none">
+                    <i data-lucide="menu" class="h-8 w-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <nav id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-green-700">
+            <ul class="flex flex-col space-y-4 mt-4">
+                <li><a href="#home" class="block text-center hover:text-secondary font-semibold mobile-link">Home</a></li>
+                <li><a href="#about" class="block text-center hover:text-secondary font-semibold mobile-link">About</a></li>
+                <li><a href="#services" class="block text-center hover:text-secondary font-semibold mobile-link">Services</a></li>
+                <li><a href="#contact" class="block text-center hover:text-secondary font-semibold mobile-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-[90vh] flex items-center justify-center text-white overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg');">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">Welcome to Agrigrow</h1>
+            <p class="text-xl md:text-2xl mb-8 font-light text-gray-200">Your trusted seedling delivery partner</p>
+            <a href="#services" class="inline-block bg-secondary text-primary font-bold py-3 px-8 rounded-full hover:bg-green-400 transition transform hover:scale-105 shadow-lg">View Our Seedlings</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-accent">
+        <div class="max-w-4xl mx-auto px-6 text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">Who We Are</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full"></div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Agrigrow is dedicated to supporting farmers by providing high-quality, disease-resistant seedlings delivered right to your farm. 
+                We bridge the gap between quality nurseries and the farmers who feed the nation.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Our mission is to ensure every farmer has access to the best start for their crops—because a good harvest begins with a strong seedling.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Seedlings</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-8">
+                <!-- Card 1 -->
+                <div class="w-full max-w-sm fade-in delay-100">
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden h-full flex flex-col">
+                        <div class="h-64 overflow-hidden relative group">
+                            <img src="https://images.pexels.com/photos/16053020/pexels-photo-16053020.jpeg" alt="Maize Seedlings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-2">Maize Seedlings</h3>
+                                <p class="text-gray-600 mb-4">High-quality hybrid maize seedlings delivered fresh.</p>
+                            </div>
+                            <button class="w-full py-2 bg-primary text-white font-semibold rounded hover:bg-green-700 transition-colors">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="w-full max-w-sm fade-in delay-200">
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden h-full flex flex-col">
+                        <div class="h-64 overflow-hidden relative group">
+                            <img src="https://images.pexels.com/photos/8221390/pexels-photo-8221390.jpeg" alt="Tomato Seedlings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-2">Tomato Seedlings</h3>
+                                <p class="text-gray-600 mb-4">Healthy tomato seedlings ready for transplanting.</p>
+                            </div>
+                            <button class="w-full py-2 bg-primary text-white font-semibold rounded hover:bg-green-700 transition-colors">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="w-full max-w-sm fade-in delay-300">
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden h-full flex flex-col">
+                        <div class="h-64 overflow-hidden relative group">
+                            <img src="https://images.pexels.com/photos/14209081/pexels-photo-14209081.jpeg" alt="Cabbage Seedlings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-2">Cabbage Seedlings</h3>
+                                <p class="text-gray-600 mb-4">Strong and disease-resistant cabbage seedlings.</p>
+                            </div>
+                            <button class="w-full py-2 bg-primary text-white font-semibold rounded hover:bg-green-700 transition-colors">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-accent">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Contact Us</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600">Have questions? We'd love to hear from you.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                
+                <!-- Info -->
+                <div class="bg-white p-8 rounded-xl shadow-lg h-full fade-in delay-100">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Get in Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-green-100 p-3 rounded-full text-primary">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Email Us</h4>
+                                <a href="mailto:agrigrowenterprise@gmail.com" class="text-primary hover:underline">agrigrowenterprise@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-green-100 p-3 rounded-full text-primary">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Call Us</h4>
+                                <a href="tel:+254796805119" class="text-primary hover:underline">+254796805119</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-green-100 p-3 rounded-full text-primary">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Visit Us</h4>
+                                <p class="text-gray-600">Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form action="https://formsubmit.co/agrigrowenterprise@gmail.com" method="POST" target="_blank" class="bg-white p-8 rounded-xl shadow-lg fade-in delay-200">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Send a Message</h3>
+                    
+                    <input type="hidden" name="_subject" value="New Inquiry from Agrigrow Website">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" required rows="4" placeholder="How can we help you?" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-8 mb-4 text-green-100 font-medium">
+                <a href="mailto:agrigrowenterprise@gmail.com" class="hover:text-white transition-colors hover:underline">agrigrowenterprise@gmail.com</a>
+                <span class="hidden md:inline text-green-400">•</span>
+                <a href="tel:+254796805119" class="hover:text-white transition-colors hover:underline">+254796805119</a>
+            </div>
+            <div class="border-t border-green-800 pt-4 mt-2">
+                <p class="font-medium text-lg">&copy; 2025 Agrigrow. All rights reserved.</p>
+                <p class="text-green-200 text-sm mt-2">Growing Tomorrow, Today 🌱</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition-all duration-300 transform z-50 opacity-0 scale-0 pointer-events-none" aria-label="Scroll to top">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>
